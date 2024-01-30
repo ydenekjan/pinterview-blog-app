@@ -1,37 +1,22 @@
-<script>
-import Navigation from '@/components/Navigation.vue';
-
-export default {
-  components: { Navigation },
-
-  mounted() {
-    this.$store.dispatch('createPost', {
-      slug: 'this-is-the-first-post-on-this-blog',
-      title: 'This is the first post on this blog',
-      editor: 'Jan Zdenek',
-      time: 'Jan 26, 2024',
-      content: `This is an example blog post that would normally show up if this site had any sort of a database and didnt completely reset on page refresh`
-    })
-  }
-}
-
+<script setup>
 </script>
 
 <template>
-  <Navigation/>
   <RouterView/>
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 * {
-  font-family: Bitter, serif;
+  font-family: 'Roboto', serif;
   scrollbar-gutter: stable !important;
 }
 
 body {
   margin: 0;
+  background-color: #FEFEFE;
 }
 
 </style>

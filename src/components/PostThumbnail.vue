@@ -11,8 +11,9 @@ const props = defineProps({
 
 <template>
   <div class="post-thumbnail">
+    <RouterLink :to="post.slug">
     <h1>
-      <RouterLink :to="post.slug">{{ post.title }}</RouterLink>
+     {{ post.title }}
     </h1>
     <h2>
       {{ post.time }} • {{ post.editor }}
@@ -26,6 +27,7 @@ const props = defineProps({
     <div class="post-link">
       <RouterLink :to="post.slug">Continue reading...</RouterLink>
     </div>
+    </RouterLink>
   </div>
 </template>
 
@@ -33,16 +35,23 @@ const props = defineProps({
   .post-thumbnail {
     width: 400px;
     height: 600px;
-    border: 1px solid lightgray;
-    padding: 40px;
+    padding: 60px;
     overflow-x: clip;
     position: relative;
-    margin: 40px 0;
+    margin: 80px 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #FFF;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
   }
 
   h1 {
     margin: 0;
-    color: darkslategray;
+    font-size: 32px;
+    text-overflow: fade;
+    color: #DC965A;
+
   }
 
   h2 {
@@ -54,10 +63,10 @@ const props = defineProps({
 
   .post-cover {
     position: relative;
-    width: 482px;
+    width: 440px;
     height: 250px;
+    left: -20px;
     background-color: grey;
-    left: -40px;
     margin: 40px 0;
     overflow: clip;
   }
@@ -70,8 +79,10 @@ const props = defineProps({
 
   p {
     margin: 0;
+    width: 350px;
     height: 180px;
     overflow: clip;
+    color: dimgray;
   }
 
   .post-link {
@@ -80,8 +91,12 @@ const props = defineProps({
   }
 
   a, a:visited {
-    color: #056767;
+    color: #DC965A;
     text-decoration: none;
+  }
+
+  .post-thumbnail:hover {
+    transform: translate(2px, -5px) rotate(0.5deg);
   }
 
 </style>

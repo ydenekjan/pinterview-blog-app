@@ -1,10 +1,11 @@
 <script>
 
 import PostThumbnail from '@/components/PostThumbnail.vue';
-import EditorView from '@/views/EditorView.vue';
+import CreatorView from '@/views/CreatorView.vue';
+import Navigation from '@/components/Navigation.vue';
 
 export default {
-  components: {EditorView, PostThumbnail },
+  components: {Navigation, CreatorView, PostThumbnail },
   computed: {
     posts() {
       return this.$store.getters.getPosts;
@@ -19,6 +20,7 @@ export default {
 </script>
 
 <template>
+  <Navigation/>
   <section class="posts">
    <PostThumbnail v-for="post in posts" :post="post"/>
   </section>
@@ -26,9 +28,9 @@ export default {
 
 <style scoped>
   .posts {
-    margin: 60px 0;
+    margin: 0 200px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 </style>

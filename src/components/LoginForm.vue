@@ -40,12 +40,12 @@
     <div class="form-wrapper">
       <form @submit.prevent="login">
         <label for="username">Username:</label>
-        <input type="text" placeholder="Username" name="username" required ref="focused">
+        <input type="text" placeholder="Username" id="username" required ref="focused">
 
         <label for="password">Password:</label>
-        <input type="password" placeholder="Password" name="password" required>
+        <input type="password" placeholder="Password" id="password" required>
 
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
 
       </form>
 
@@ -58,12 +58,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 100px 0;
-}
-
-input {
-  width: 100%;
-  height: 30px;
+  margin: 40px 0;
 }
 
 label {
@@ -72,15 +67,52 @@ label {
 
 h1 {
   font-size: 48px;
+  color: #242325;
 }
 
 form input {
+  box-sizing: border-box;
+  width: 500px;
+  height: 40px;
+  margin-bottom: 10px;
+  outline: none;
   padding-left: 5px;
+  border: 1px solid dimgray;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #DC965A;
+  border-radius: 5px;
 }
 
 .form-wrapper {
   display: flex;
   flex-direction: column;
   width: 500px;
+}
+
+form {
+  position: relative;
+  width: 500px;
+}
+
+.submit {
+  display: block;
+  margin: 20px auto 0 auto;
+  position: relative;
+  width: 300px;
+  outline: none;
+  border: 1px solid #DC965A;
+  border-radius: 5px;
+  background-color: white;
+  color: #DC965A;
+  font-size: 18px;
+}
+
+.submit:hover {
+  color: white;
+  background-color: #DC965A;
 }
 </style>

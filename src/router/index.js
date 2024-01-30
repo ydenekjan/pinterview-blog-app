@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import EditorView from '@/views/EditorView.vue';
+import HomeView from '@/views/HomeView.vue'
+import CreatorView from '@/views/CreatorView.vue';
 import BlogPostView from '@/views/BlogPostView.vue';
 import LoginView from '@/views/LoginView.vue';
-import PostEditor from '@/components/PostEditor.vue';
+import EditorView from '@/views/EditorView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +14,7 @@ const router = createRouter({
     },
     {
       path: '/editor',
-      component: EditorView,
+      component: CreatorView,
     },
     {
       path: '/:slug',
@@ -26,7 +26,7 @@ const router = createRouter({
     },
     {
       path: '/:slug/edit',
-      component: PostEditor,
+      component: EditorView,
     }
   ]
 })

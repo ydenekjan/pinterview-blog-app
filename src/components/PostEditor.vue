@@ -1,9 +1,19 @@
 <script setup>
 
+const props = defineProps({
+  post: {
+    type: Object,
+    required: true,
+
+  }
+})
+
 </script>
 
 <template>
-  $END$
+
+
+
 </template>
 
 <style scoped>

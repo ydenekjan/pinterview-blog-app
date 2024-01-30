@@ -1,9 +1,17 @@
-<script setup>
+<script>
+  import LoginForm from '@/components/LoginForm.vue';
 
+  export default {
+    components: { LoginForm },
+
+    mounted(){
+      document.title = 'My Blog | Login'
+    }
+  }
 </script>
 
 <template>
-  $END$
+  <login-form></login-form>
 </template>
 
 <style scoped>

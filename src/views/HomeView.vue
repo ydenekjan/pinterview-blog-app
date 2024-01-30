@@ -11,23 +11,24 @@ export default {
     }
   },
 
-  created() {
-    this.$store.dispatch('createPost', {
-      slug: 'this-is-the-first-post-on-this-blog',
-      title: 'This is the first post on this blog',
-      editor: 'Jan Zdenek',
-      time: 'Jan 26, 2024',
-      content: `This is an example blog post that would normally show up if this site had any sort of a database and didnt completely reset on page refresh`
-    })
+  mounted() {
+    document.title = 'My Blog | Home'
   }
 }
 
 </script>
 
 <template>
-  <PostThumbnail v-for="post in posts" :post="post"/>
+  <section class="posts">
+   <PostThumbnail v-for="post in posts" :post="post"/>
+  </section>
 </template>
 
 <style scoped>
-
+  .posts {
+    margin: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 </style>

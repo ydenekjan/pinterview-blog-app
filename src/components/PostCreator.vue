@@ -8,18 +8,32 @@ export default {
         title: '',
         editor: '',
         time: '',
+        coverImage: null,
         content: '',
       }
     };
   },
+
+  mounted() {
+    this.$refs.focused.focus()
+  },
+
   methods: {
-    submitForm() {
+    submitForm(event) {
       let time = new Date
       this.post.time = `${time.toLocaleString('default', { month: 'short' })} ${time.getDate()}, ${time.getFullYear()}`
 
       this.post.slug = this.post.title.toLowerCase().split(' ').join('-')
 
+      this.post.editor = this.$store.getters.currentUser.name
+
       this.$store.dispatch('createPost', this.post)
+
+      this.$router.push('/')
+    },
+
+    handleFileUpload(event) {
+      this.post.coverImage = URL.createObjectURL(event.target.files[0])
     }
   }
 }
@@ -32,12 +46,12 @@ export default {
     <div class="form-wrapper">
       <form @submit.prevent="submitForm">
         <label for="title">Title:</label>
-        <input type="text" id="title" placeholder="My Blog Post" v-model="post.title" required>
+        <input type="text" id="title" placeholder="My Blog Post" v-model="post.title" required ref="focused">
 
-        <label for="title">Editor:</label>
-        <input type="text" id="editor" placeholder="John Doe" v-model="post.editor" required>
+        <label for="image">Cover Image:</label>
+        <input class="img-input" type="file" @change="handleFileUpload"/>
 
-        <label for="content">Content:</label><br>
+        <label for="content">Content:</label>
         <textarea id="content" placeholder="What would you like to post today?" v-model="post.content" required/>
 
         <input type="submit" value="Submit">
@@ -50,15 +64,14 @@ export default {
 
 <style scoped>
   .post-creator {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin: 100px 0;
   }
 
   input {
-    width: 100%;
+    width: 490px;
     height: 30px;
   }
 
@@ -71,12 +84,13 @@ export default {
   }
 
   textarea {
-    width: 100%;
+    width: 490px;
     height: 500px;
   }
 
   form input, textarea {
-    padding-left: 5px;
+    padding: 0 0 0 10px;
+    margin-bottom: 15px;
   }
 
   form textarea {
@@ -87,6 +101,10 @@ export default {
     display: flex;
     flex-direction: column;
     width: 500px;
+  }
+
+  .img-input {
+    padding: 0;
   }
 
 </style>

@@ -1,43 +1,41 @@
 <script>
-
 export default {
   data() {
     return {
       post: {
-        slug: '',
-        title: '',
-        editor: '',
-        time: '',
+        slug: "",
+        title: "",
+        editor: "",
+        time: "",
         coverImage: null,
-        content: '',
-      }
+        content: "",
+      },
     };
   },
 
   mounted() {
-    this.$refs.focused.focus()
+    this.$refs.focused.focus();
   },
 
   methods: {
     submitForm() {
-      let time = new Date
-      this.post.time = `${time.toLocaleString('default', { month: 'short' })} ${time.getDate()}, ${time.getFullYear()}`
+      let time = new Date();
+      this.post.time = `${time.toLocaleString("default", { month: "short" })} ${time.getDate()}, ${time.getFullYear()}`;
 
-      this.post.slug = this.post.title.toLowerCase().split(' ').join('-')
+      this.post.slug = this.post.title.toLowerCase().split(" ").join("-");
 
-      this.post.editor = this.$store.getters.currentUser.name
+      this.post.editor = this.$store.getters.currentUser.name;
 
-      this.$store.dispatch('createPost', this.post)
+      this.$store.dispatch("createPost", this.post);
 
-      this.$router.push('/')
+      this.$router.push("/");
     },
 
     handleFileUpload(event) {
-      this.post.coverImage = URL.createObjectURL(event.target.files[0])
-    }
-  }
-}
-
+      this.post.coverImage = URL.createObjectURL(event.target.files[0]);
+    },
+  },
+};
 </script>
 
 <template>
@@ -46,18 +44,35 @@ export default {
     <div class="form-wrapper">
       <form @submit.prevent="submitForm">
         <label for="title">Title:</label>
-        <input class="text" type="text" id="title" placeholder="My Blog Post" v-model="post.title" required ref="focused">
+        <input
+          class="text"
+          type="text"
+          id="title"
+          placeholder="My Blog Post"
+          v-model="post.title"
+          required
+          ref="focused"
+        />
 
         <label class="upload-image" for="image">Cover Image</label>
-        <input id="image" class="img-input" type="file" @change="handleFileUpload"/>
+        <input
+          id="image"
+          class="img-input"
+          type="file"
+          @change="handleFileUpload"
+        />
 
         <label for="content">Content:</label>
-        <textarea class="text" id="content" placeholder="What would you like to post today?" v-model="post.content" required/>
+        <textarea
+          class="text"
+          id="content"
+          placeholder="What would you like to post today?"
+          v-model="post.content"
+          required
+        />
 
-        <input class="create-post" type="submit" value="Create Post">
-
+        <input class="create-post" type="submit" value="Create Post" />
       </form>
-
     </div>
   </section>
 </template>
@@ -75,7 +90,7 @@ input[type="file"] {
 }
 
 .upload-image {
-  margin: 10px 0 25px 0 ;
+  margin: 10px 0 25px 0;
   text-align: center;
   padding: 10px 0;
   vertical-align: center;
@@ -98,7 +113,8 @@ label {
   margin: 0 400px 0 0;
 }
 
-input, textarea {
+input,
+textarea {
   margin: 5px 0 20px 0;
 }
 
@@ -122,9 +138,10 @@ h1 {
   height: 250px;
 }
 
-.text:focus, textarea:focus {
-  outline: 1px solid #DC965A;
-  border: 1px solid #DC965A;
+.text:focus,
+textarea:focus {
+  outline: 1px solid #dc965a;
+  border: 1px solid #dc965a;
   border-radius: 5px;
 }
 
@@ -139,25 +156,22 @@ form {
   width: 500px;
 }
 
-.create-post{
+.create-post {
   display: block;
   position: relative;
   width: 500px;
   height: 40px;
   outline: none;
-  border: 1px solid #DC965A;
+  border: 1px solid #dc965a;
   border-radius: 5px;
   background-color: white;
-  color: #DC965A;
+  color: #dc965a;
   font-size: 18px;
   margin: 10px auto;
 }
 
-
 .create-post:hover {
   color: white;
-  background-color: #DC965A;
+  background-color: #dc965a;
 }
-
-
 </style>

@@ -1,37 +1,30 @@
 <script>
+import Navigation from "@/components/Navigation.vue";
 
-  import Navigation from '@/components/Navigation.vue';
+export default {
+  components: { Navigation },
 
-  export default {
+  methods: {
+    login(event) {
+      const users = this.$store.getters.getUsers;
 
-    components: { Navigation },
+      let username = event.target.elements.username.value;
+      let password = event.target.elements.password.value;
 
-    methods: {
-      login(event) {
+      users.forEach((user) => {
+        if (user.username === username && user.password === password) {
+          this.$store.dispatch("loginUser", user);
 
-        const users = this.$store.getters.getUsers
-
-        let username = event.target.elements.username.value
-        let password = event.target.elements.password.value
-
-        users.forEach(user => {
-              if (user.username === username && user.password === password) {
-
-                this.$store.dispatch('loginUser', user)
-
-                this.$router.push('/')
-              }
-        })
-
-      }
+          this.$router.push("/");
+        }
+      });
     },
+  },
 
-    mounted() {
-      this.$refs.focused.focus()
-    }
-  }
-
-
+  mounted() {
+    this.$refs.focused.focus();
+  },
+};
 </script>
 
 <template>
@@ -40,15 +33,19 @@
     <div class="form-wrapper">
       <form @submit.prevent="login">
         <label for="username">Username:</label>
-        <input type="text" placeholder="Username" id="username" required ref="focused">
+        <input
+          type="text"
+          placeholder="Username"
+          id="username"
+          required
+          ref="focused"
+        />
 
         <label for="password">Password:</label>
-        <input type="password" placeholder="Password" id="password" required>
+        <input type="password" placeholder="Password" id="password" required />
 
-        <input class="submit" type="submit" value="Submit">
-
+        <input class="submit" type="submit" value="Submit" />
       </form>
-
     </div>
   </section>
 </template>
@@ -83,7 +80,7 @@ form input {
 
 input:focus {
   outline: none;
-  border: 1px solid #DC965A;
+  border: 1px solid #dc965a;
   border-radius: 5px;
 }
 
@@ -104,15 +101,15 @@ form {
   position: relative;
   width: 300px;
   outline: none;
-  border: 1px solid #DC965A;
+  border: 1px solid #dc965a;
   border-radius: 5px;
   background-color: white;
-  color: #DC965A;
+  color: #dc965a;
   font-size: 18px;
 }
 
 .submit:hover {
   color: white;
-  background-color: #DC965A;
+  background-color: #dc965a;
 }
 </style>

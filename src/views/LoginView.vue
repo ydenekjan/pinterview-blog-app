@@ -1,21 +1,19 @@
 <script>
-  import LoginForm from '@/components/LoginForm.vue';
-  import Navigation from '@/components/Navigation.vue';
+import LoginForm from "@/components/LoginForm.vue";
+import Navigation from "@/components/Navigation.vue";
 
-  export default {
-    components: {Navigation, LoginForm },
+export default {
+  components: { Navigation, LoginForm },
 
-    mounted(){
-      document.title = 'My Blog | Login'
-    }
-  }
+  mounted() {
+    document.title = "My Blog | Login ";
+  },
+};
 </script>
 
 <template>
-  <Navigation/>
+  <Navigation />
   <login-form></login-form>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

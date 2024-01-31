@@ -1,100 +1,77 @@
 <script>
-
 export default {
   computed: {
     computedUser() {
-        return this.$store.getters.currentUser
-    }
-}}
-
-
+      return this.$store.getters.currentUser;
+    },
+  },
+};
 </script>
 
 <template>
-  <section id="header">
-    <div id="navbar">
-      <ul>
-        <li class="logo">
-          <h1>My Blog Name</h1>
-        </li>
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li v-if="computedUser.isAdmin">
-          <router-link to="/editor">Editor</router-link>
-        </li>
-        <li v-if="computedUser.name !== ''" class="login"><a>{{ computedUser.name }}</a></li>
-        <li v-else class="login">
-          <router-link to="/login">Login</router-link>
-        </li>
-      </ul>
-    </div>
-  </section>
+  <div class="navbar">
+    <router-link to="/" class="logo"><h1>My Blog Name</h1></router-link>
+    <router-link to="/">Home</router-link>
+    <router-link to="/editor" v-if="computedUser.isAdmin">Editor</router-link>
+    <a class="login" v-if="computedUser.name !== ''">{{ computedUser.name }}</a>
+    <router-link to="/login" class="login" v-else>Login</router-link>
+  </div>
 </template>
 
 <style scoped>
+.navbar {
+  cursor: default;
+  background-color: #242325;
+  overflow: hidden;
+  box-shadow: rgba(36, 35, 37, 0.2) 0 0 20px 10px;
+}
 
-  #header {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.logo h1 {
+  font-family: "Dancing Script", serif;
+  margin: 0 10px;
+  font-size: 32px;
+  padding: 0;
+}
+
+.navbar .logo {
+  padding: 15px 20px;
+}
+
+.navbar a:hover {
+  padding: 20px 20px 17px;
+  border-bottom: 3px solid #dc965a;
+}
+
+.navbar .logo:hover {
+  border: none;
+  padding: 15px 20px;
+}
+
+.navbar .login {
+  float: right;
+}
+
+@media (max-width: 600px) {
+  .navbar a {
+    box-sizing: border-box;
     width: 100%;
-    overflow: hidden;
-    box-shadow: dimgray 0 0 30px;
-  }
-
-  h1 {
-    font-family: 'Dancing Script', serif;
-    font-weight: 700;
-    font-size: 38px;
-    color: white;
-    margin: 0 30px;
-  }
-
-  #navbar {
-    width: 100% ;
-    height: 80px;
-    background-color: #242325;
-    position: relative;
-    cursor: default;
-  }
-
-  ul {
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-
-  li {
-    display: flex;
-    height: 100%;
-    align-items: center;
-  }
-
-  li:hover {
-    background-color: #3D3B3F;
-  }
-
-  .logo:hover {
-    background-color: inherit;
-  }
-
-  a, a:visited {
-    padding: 0 30px;
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
-    display: block;
-    align-items: center;
     float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 24px;
   }
-
-  .login {
-    position: absolute;
-    right: 0;
-  }
-
+}
 </style>

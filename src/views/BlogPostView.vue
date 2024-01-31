@@ -1,85 +1,81 @@
 <script>
-
-import Navigation from '@/components/Navigation.vue';
-import PostEditor from '@/components/PostEditor.vue';
-
+import Navigation from "@/components/Navigation.vue";
+import PostEditor from "@/components/PostEditor.vue";
 
 export default {
-  components: {PostEditor, Navigation},
+  components: { PostEditor, Navigation },
   data() {
     return {
       post: {},
-      slug: ''
-    }
+      slug: "",
+    };
   },
 
   mounted() {
-
-    let posts = this.$store.getters.getPosts
+    let posts = this.$store.getters.getPosts;
 
     function findPost(arr, slug) {
       for (let i = 0; i < arr.length; i++) {
-        if (arr[i].slug === slug) return arr[i]
+        if (arr[i].slug === slug) return arr[i];
       }
     }
 
-    this.slug = this.$route.params.slug
-    this.post = findPost(posts, this.slug)
+    this.slug = this.$route.params.slug;
+    this.post = findPost(posts, this.slug);
 
-
-    document.title = 'My Blog | ' + this.post.title
-
+    document.title = "My Blog | " + this.post.title;
   },
 
   computed: {
     computedUser() {
-      return this.$store.getters.currentUser
-    }}
-}
-
-
-
+      return this.$store.getters.currentUser;
+    },
+  },
+};
 </script>
 
 <template>
-  <Navigation/>
+  <Navigation />
 
   <div class="post">
     <h1>
       {{ post.title }}
     </h1>
-    <router-link class="edit-post" v-if="computedUser.isAdmin" :to="post.slug + '/edit'">Edit Post</router-link>
-    <h2>
-      {{ post.time }} • {{ post.editor }}
-    </h2>
+    <router-link
+      class="edit-post"
+      v-if="computedUser.isAdmin"
+      :to="post.slug + '/edit'"
+      >Edit Post</router-link
+    >
+    <h2>{{ post.time }} • {{ post.editor }}</h2>
     <div class="content">
-      <div class="cover-image"><img :src="post.coverImage" alt='Post Cover Image'></div>
+      <div class="cover-image">
+        <img :src="post.coverImage" alt="Post Cover Image" />
+      </div>
       <p>
         {{ post.content }}
       </p>
     </div>
-
   </div>
-
 </template>
 
 <style scoped>
-
 .post {
   position: relative;
   width: 1200px;
   padding: 80px 120px;
 }
 
-.edit-post, .edit-post:visited {
+.edit-post,
+.edit-post:visited {
   display: block;
   width: 230px;
   height: 20px;
   outline: none;
-  border: 1px solid #DC965A;
+  border: 1px solid #dc965a;
   border-radius: 5px;
   background-color: white;
-  color: #DC965A;
+  color: #dc965a;
   font-size: 18px;
   text-decoration: none;
   position: absolute;
@@ -90,14 +86,14 @@ export default {
 }
 
 .edit-post:hover {
-  background-color: #DC965A;
+  background-color: #dc965a;
   color: white;
 }
 
 h1 {
   font-size: 42px;
-  margin: 0 ;
-  color: #DC965A;
+  margin: 0;
+  color: #dc965a;
 }
 
 h2 {
@@ -125,7 +121,6 @@ p {
   margin: 0;
   font-size: 18px;
   width: 500px;
-  color: #3D3B3F;
+  color: #3d3b3f;
 }
-
 </style>

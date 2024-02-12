@@ -7,21 +7,14 @@ export default {
   data() {
     return {
       post: {},
-      slug: "",
+      slug: this.$route.params.slug,
     };
   },
 
   mounted() {
-    let posts = this.$store.getters.getPosts;
-
-    function findPost(arr, slug) {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].slug === slug) return arr[i];
-      }
-    }
-
-    this.slug = this.$route.params.slug;
-    this.post = findPost(posts, this.slug);
+    this.post = this.$store.getters.getPosts.find(
+      (post) => post.slug === this.slug,
+    );
 
     document.title = "My Blog | " + this.post.title;
   },

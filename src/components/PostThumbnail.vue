@@ -1,10 +1,9 @@
-<script setup>
-const props = defineProps({
-  post: {
-    type: Object,
-    required: true,
-  },
-});
+<script>
+export default {
+  props: { post: { type: Object, required: true } },
+
+  setup(props) {},
+};
 </script>
 
 <template>

@@ -1,9 +1,3 @@
-<script setup>
-import { ref } from "vue";
-
-const overlay = ref(false);
-</script>
-
 <script>
 import Navigation from "@/App.vue";
 
@@ -12,22 +6,16 @@ export default {
 
   data() {
     return {
+      overlay: false,
       post: {},
-      oldSlug: "",
+      oldSlug: this.$route.params.slug,
     };
   },
 
   mounted() {
-    let posts = this.$store.getters.getPosts;
-
-    function findPost(arr, slug) {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].slug === slug) return arr[i];
-      }
-    }
-
-    this.oldSlug = this.$route.params.slug;
-    this.post = findPost(posts, this.oldSlug);
+    this.post = this.$store.getters.getPosts.find(
+      (post) => post.slug === this.oldSlug,
+    );
 
     document.title = "My Blog | Edit - " + this.post.title;
   },
